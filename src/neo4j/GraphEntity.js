@@ -4,15 +4,13 @@ import _ from 'lodash';
 export default class GraphEntity {
   constructor({ properties }) {
     this._uuid = uuid.v4();
-    this.props = _.merge(
-      { _uuid: this._uuid }, properties || {},
-    );
+    this.props = properties || {};
   }
 
   getProperties() { return this.props; }
 
   setProperties(properties) {
-    this.props = _.merge({ _uuid: this._uuid }, properties);
+    this.props = properties || {};
   }
 
   setProperty(key, value) {

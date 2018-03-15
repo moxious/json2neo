@@ -21,10 +21,8 @@ Simplest possible example:
 $ echo '{"name":"John", "friends":[{"name":"Bob"}]}' | \
 ./node_modules/.bin/babel-node src/json2cypher.js --stdin \
   --label Person
-CREATE (e0:`friends` {`_uuid`: "3549a019-e525-46f8-98c0-e432064f5d45",
-`name`: "Bob" })
-CREATE (e2:`Person` {`_uuid`: "6117ac40-b8cf-4762-b4e4-098297975f3b",
-`name`: "John" })
+CREATE (e0:`friends` {`name`: "Bob" })
+CREATE (e2:`Person` {`name`: "John" })
 MERGE (e2)-[e1:`friends`]->(e0);
 ```
 
