@@ -12,6 +12,10 @@ json2cypher [args]
    --file /path/to/file.json (read JSON data from specified file)
    --mapping /path/to/mapping-file.json
    --label MyLabel (Use this label for the root JSON object)
+
+   --create output cypher as a set of create operations
+   --merge output cypher as a set of merge operations (default)
+
    --multi treat input source as multiple JSON objects, one per line.
 Produces cypher on standard output.
 `);
@@ -40,11 +44,17 @@ const main = () => {
     help();
   }
 
+  let operation = 'merge';
+
+  if (yargs.argv.create) {
+    operation = 'create';
+  }
+
   const mapping = initMapping();
 
   const onRawJSONObject = obj => {
     const cache = json2neo(obj, yargs.argv.label, mapping);
-    console.log(cache.cypher('merge'));
+    console.log(cache.cypher(operation));
   };
 
   if (yargs.argv.stdin) {
