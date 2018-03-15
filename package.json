@@ -39,6 +39,7 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
+    "get-stdin": "^6.0.0",
     "lodash": "^4.17.5",
     "nconf": "^0.8.4",
     "nconf-yaml": "^1.0.2",
