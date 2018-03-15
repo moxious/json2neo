@@ -4,12 +4,13 @@ import _ from 'lodash';
  * A simple cache by UUID of nodes and relationships.
  */
 export default class GraphEntitySet {
-  constructor() {
+  constructor(mapping) {
     this.nodes = {};
     this.relationships = {};
     this.entities = {};
     this.tags = {};
     this.counter = 0;
+    this.mapping = mapping;
   }
 
   _assignTag(e) {
@@ -47,18 +48,21 @@ export default class GraphEntitySet {
     return !_.isNil(this.entities[uuid]);
   }
 
-  cypher() {
-    const createNodeStmts = [];
-    const createRelStmts = [];
+  cypher(operation='create') {
+    const nodeStmts = [];
+    const relStmts = [];
 
     _.values(this.nodes).forEach(node => {
-      createNodeStmts.push(node.createCypher(this.tags[node.uuid()]));
+      const tag = this.tags[node.uuid()];
+      const stmt = operation === 'create' ? node.createCypher(tag, this) : node.mergeCypher(tag, this);
+      nodeStmts.push(stmt);
     });
 
     _.values(this.relationships).forEach(rel => {
-      createRelStmts.push(rel.createCypher(this));
+      const stmt = operation === 'create' ? rel.createCypher(this) : rel.mergeCypher(this);
+      relStmts.push(stmt);
     });
 
-    return createNodeStmts.join('\n') + '\n' + createRelStmts.join('\n') + ';';
+    return nodeStmts.join('\n') + '\n' + relStmts.join('\n') + ';';
   }
 };

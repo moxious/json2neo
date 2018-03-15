@@ -44,7 +44,7 @@ const main = () => {
 
   const onRawJSONObject = obj => {
     const cache = json2neo(obj, yargs.argv.label, mapping);
-    console.log(cache.cypher());
+    console.log(cache.cypher('merge'));
   };
 
   if (yargs.argv.stdin) {

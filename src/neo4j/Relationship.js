@@ -21,7 +21,15 @@ export default class Relationship extends GraphEntity {
   getTo() { return this.to; }
   getType() { return this.type; }
 
+  mergeCypher(cache) {
+    return this.cypher(cache, 'MERGE');
+  }
+
   createCypher(cache) {
+    return this.cypher(cache, 'CREATE');
+  }
+
+  cypher(cache, operation='CREATE') {
     if (!cache) {
       throw new Error('Must pass graphcache');
     }
@@ -34,6 +42,7 @@ export default class Relationship extends GraphEntity {
       throw new Error('From tag or to tag missing from graph cache');
     }
 
-    return `CREATE (${fromTag})-[${relTag}:\`${this.type}\` ${this.cypherProperties()}]->(${toTag})`;
+    // ${this.cypherProperties()} removed to prevent merge from failing every time.
+    return `${operation} (${fromTag})-[${relTag}:\`${this.type}\`]->(${toTag})`;
   }
 };

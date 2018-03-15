@@ -31,9 +31,12 @@ export default class GraphEntity {
     return str.replace(/\`/g, '\\`');
   }
 
+  cypherProperty(key, assigner=':') {
+    return `\`${key}\`${assigner} ${this.cypherPrimitive(this.props[key])}`;
+  }
+
   cypherProperties() {
-    return `{${Object.keys(this.props).map(key =>
-        `\`${key}\`: ${this.cypherPrimitive(this.props[key])}`).join(',\n')} }`;
+    return `{${Object.keys(this.props).map(key => this.cypherProperty(key)).join(',\n')} }`;
   }
 
   cypherPrimitive(primitive) {

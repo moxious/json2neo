@@ -36,7 +36,6 @@ const walkArray = (parent, arr, label, cache, mapping) => {
 
   if (subArrays.length > 0) {
     subArrays.forEach(subSubArray => {
-      console.error('In parent ', parent, 'array', arr);
       if (!containsOnlyPrimitives(subSubArray)) {
         throw new Error('JSON that contains nested arrays can only be imported if the nested arrays are of primitives');
       }
@@ -115,7 +114,7 @@ const json2neo = (object, impliedLabel='Node', mapping=new JSONMapping()) => {
 
   // Create a cache to hold results, walk the object transforming it,
   // populate the cache.
-  const cache = new GraphEntitySet();
+  const cache = new GraphEntitySet(mapping);
   recursiveWalkObject(object, impliedLabel, cache, mapping);
 
   return cache;

@@ -15,4 +15,9 @@ export default class JSONMapping {
     const entry = _.get(this.mapping, jsonPropertyName);
     return _.get(entry, 'relationshipType') || jsonPropertyName;
   }
+
+  getKey(label) {
+    const entry = _.get(this.mapping.keys, label);
+    return entry;
+  }
 }
