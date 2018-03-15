@@ -61,6 +61,14 @@ This would produce a graph where `(John)-[:HAS_FRIEND]->(:Friend { name: "Bob" }
 By default, the mapping would take the json property name as both the relationship type
 and the destination node label.
 
+These mappings are quite simple and have some limitations:
+
+- Renaming is global, so you can't map "friends" one way at the root and another way somewhere else.
+- Renaming is static; there's no way to have the label name be the result of a function, for example.
+
+I don't recommend you go too far with these mappings, they're intended to be quite straightforward and simple.  If you need more complex mappings, you might consider using something like the json-mapper module to massage your JSON data before importing it into 
+neo4j.
+
 ## How to use
 
 1. Clone this repository: `git clone https://github.com/hwndept/node-seed`
