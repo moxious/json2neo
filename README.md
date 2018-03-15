@@ -41,6 +41,10 @@ json2cypher [args]
    --label MyLabel (Use this label for the root JSON object)
    --multi treat input source as multiple JSON objects, one per line.
 
+   --create output cypher as a set of create operations
+   --merge output cypher as a set of merge operations (default)
+
+
 Produces cypher on standard output.
 ```
 
@@ -81,6 +85,22 @@ These mappings are quite simple and have some limitations:
 
 I don't recommend you go too far with these mappings, they're intended to be quite straightforward and simple.  If you need more complex mappings, you might consider using something like the json-mapper module to massage your JSON data before importing it into 
 neo4j.
+
+## Keys
+
+For using the `--merge` operation, the program needs to know what the node keys are.
+This is specified in the mapping file like this:
+
+```
+  "keys": {
+    "Tweet": "id_str",
+    "User": "screen_name"
+  }
+```
+
+Consult tweet-mapping.json in samples for an example.
+
+This means that when merging every tweet, duplicates by `id_str` will not be created.
 
 ## How to use
 
