@@ -1,0 +1,48 @@
+{
+  "name": "json2neo",
+  "version": "0.0.1",
+  "description": "Turn JSON objects into neo4j graphs",
+  "keywords": [
+    "neo4j",
+    "json"
+  ],
+  "main": "",
+  "scripts": {
+    "pre-commit": "./node_modules/.bin/gulp pre-commit"
+  },
+  "pre-commit": [
+    "pre-commit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moxious/json2neo.git"
+  },
+  "author": "M. David Allen <moxious@oldhat.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moxious/json2neo/issues"
+  },
+  "homepage": "https://github.com/moxious/json2neo",
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-help": "^1.6.1",
+    "gulp-istanbul": "^1.0.0",
+    "gulp-jsdoc3": "^0.3.0",
+    "gulp-mocha": "^2.2.0",
+    "isparta": "^3.0.3",
+    "merge-stream": "^1.0.1",
+    "pre-commit": "^1.1.3",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "nconf": "^0.8.4",
+    "nconf-yaml": "^1.0.2",
+    "uuid": "^3.2.1",
+    "yargs": "^11.0.0"
+  }
+}

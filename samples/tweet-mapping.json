@@ -1,0 +1,14 @@
+{
+  "retweeted_status": {
+    "label": "Tweet",
+    "relationshipType": "retweeted"
+  },
+  "user": {
+    "label": "User",
+    "relationshipType": "POSTED"
+  },
+  "user_mentions": {
+    "label": "UserMention",
+    "relationshipType": "mentions"
+  }
+}

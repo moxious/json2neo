@@ -1,0 +1,22 @@
+{
+  "bugs": {
+    "label": "Repo",
+    "relationshipType": "BUG_REPORTS"
+  },
+  "dependencies": {
+    "label": "DependencySet",
+    "relationshipType": "HAS_DEPENDENCIES"
+  },
+  "devDependencies": {
+    "label": "DependencySet",
+    "relationshipType": "HAS_DEV_DEPENDENCIES"
+  },
+  "repository": {
+    "label": "Repo",
+    "relationshipType": "CODE"
+  },
+  "scripts": {
+    "label": "ScriptSet",
+    "relationshipType": "SCRIPTS"
+  }
+}
