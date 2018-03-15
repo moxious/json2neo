@@ -64,7 +64,7 @@ describe('root', () => {
     assert(l12l2, 'Relationship l1 -> l2');
   });
 
-  it('should loop through nested objects in arrays', () => {
+  it('should loop through nested objects in arrays, setting indexes', () => {
     const input = {
       arr: [
         { x: 1 },
@@ -91,5 +91,8 @@ describe('root', () => {
     assert(base2Second, 'Relationship base -> second');
     assert.equal(base2First.getType(), 'arr');
     assert.equal(base2Second.getType(), 'arr');
+
+    assert.equal(base2First.getProperties().index, 0);
+    assert.equal(base2Second.getProperties().index, 1);
   });
 });

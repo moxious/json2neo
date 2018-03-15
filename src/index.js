@@ -26,11 +26,12 @@ const walkArray = (parent, arr, label, cache, mapping) => {
   }
 
   if (subObjects.length > 0) {
-    subObjects.forEach(obj => {
+    subObjects.forEach((obj, idx) => {
       const connectedNode = recursiveWalkObject(obj, mapping.getNodeLabel(label), cache, mapping);
       const rel = new Relationship({
         from: parent, to: connectedNode, type: mapping.getRelationshipType(label),
       });
+      rel.setProperty('index', idx);
       cache.addRelationship(rel);
     });
   }
