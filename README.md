@@ -9,14 +9,11 @@
 
 A module for turning JSON into Neo4j graphs.
 
-## Quick Start
+## Quick Start && Examples
 
 ```
 npm install
-./node_modules/.bin/babel-node src/json2cypher.js sample.json
 ```
-
-## Examples
 
 Use a mapping to take a tweet from the streaming API and turn it into a node set.
 
