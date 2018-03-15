@@ -10,5 +10,9 @@
   "user_mentions": {
     "label": "UserMention",
     "relationshipType": "mentions"
+  },
+  "keys": {
+    "Tweet": "id_str",
+    "User": "screen_name"
   }
 }
