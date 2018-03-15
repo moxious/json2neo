@@ -11,6 +11,23 @@ import JSONMapping from './mapping/JSONMapping';
 
 const debug = process.env.DEBUG;
 
+const containsOnlyPrimitives = arr => {
+  let ok = true;
+
+  arr.forEach(item => {
+    if (_.isArray(item)) {
+      const recurse = containsOnlyPrimitives(item);
+      if (!recurse) {
+        ok = false;
+      }
+    } else if (_.isObject(item)) {
+      ok = false;
+    }
+  });
+
+  return ok;
+};
+
 const walkArray = (parent, arr, label, cache, mapping) => {
   if (debug) { console.log('walkArray', arr); }
   const primitives = arr.filter(i => !_.isObject(i) && !_.isArray(i));
@@ -18,11 +35,17 @@ const walkArray = (parent, arr, label, cache, mapping) => {
   const subObjects = arr.filter(i => _.isObject(i) && !_.isArray(i));
 
   if (subArrays.length > 0) {
-    throw new Error('Nested arrays not yet supported');
+    subArrays.forEach(subSubArray => {
+      console.error('In parent ', parent, 'array', arr);
+      if (!containsOnlyPrimitives(subSubArray)) {
+        throw new Error('JSON that contains nested arrays can only be imported if the nested arrays are of primitives');
+      }
+    });
   }
 
-  if (primitives.length > 0) {
-    parent.setProperty(label, primitives);
+  const combinedPrimitives = primitives.concat(subArrays);
+  if (combinedPrimitives.length > 0) {
+    parent.setProperty(label, combinedPrimitives);
   }
 
   if (subObjects.length > 0) {
