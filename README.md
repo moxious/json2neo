@@ -18,13 +18,17 @@ npm install
 Use a mapping to take a tweet from the streaming API and turn it into a node set.
 
 ```
-./node_modules/.bin/babel-node src/json2cypher.js --file samples/tweet.json --label Tweet --mapping samples/tweet-mapping.json
+./node_modules/.bin/babel-node src/json2cypher.js --file samples/tweet.json \
+     --label Tweet \
+     --mapping samples/tweet-mapping.json
 ```
 
 Convert this repo's package.json into a graph:
 
 ```
-./node_modules/.bin/babel-node src/json2cypher.js --file package.json --label JavascriptPackage --mapping samples/package-mapping.json
+./node_modules/.bin/babel-node src/json2cypher.js --file package.json \
+     --label JavascriptPackage \
+     --mapping samples/package-mapping.json
 ```
 
 ## Mappings
