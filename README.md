@@ -31,6 +31,19 @@ Convert this repo's package.json into a graph:
      --mapping samples/package-mapping.json
 ```
 
+## Command Line Options:
+
+```
+json2cypher [args]
+   --stdin (read JSON data from standard in)
+   --file /path/to/file.json (read JSON data from specified file)
+   --mapping /path/to/mapping-file.json
+   --label MyLabel (Use this label for the root JSON object)
+   --multi treat input source as multiple JSON objects, one per line.
+
+Produces cypher on standard output.
+```
+
 ## Mappings
 
 A mapping file is just a JSON file that tells the program how to convert a relationship name
