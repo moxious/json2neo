@@ -2,10 +2,6 @@ import assert from 'assert';
 import GraphEntity from '../../../src/neo4j/GraphEntity';
 
 describe('GraphEntity', () => {
-  it('it should add 2 + 2', () => {
-    assert.equal(2 + 2, 4);
-  });
-
   describe('Cypher Primitive', () => {
     let ge;
 
